@@ -1,10 +1,9 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var expect = require('expect');
+var React     = require('react');
+var ReactDOM  = require('react-dom');
+var expect    = require('expect');
 var TestUtils = require('react-addons-test-utils');
-var $ = require('jQuery');
-
-var TodoApp = require('TodoApp');
+var $         = require('jQuery');
+var TodoApp   = require('TodoApp');
 
 describe('TodoApp', () => {
   it("should exist", () => {
@@ -19,5 +18,23 @@ describe('TodoApp', () => {
     todoApp.handleAddTodo(todoText);
 
     expect(todoApp.state.todos[0].text).toBe(todoText);
+  });
+
+  it('should toggle completed value when handleToggle called', () => {
+    var todoData = {
+      id: 1,
+      text: 'Test todo',
+      completed: false
+    };
+
+    var todoApp = TestUtils.renderIntoDocument(<TodoApp />);
+    todoApp.setState({todos: [todoData]});
+
+    // check that todos first item has completed value of false
+    expect(todoApp.state.todos[0].completed).toBe(false);
+    // call handleToggle with 1
+    todoApp.handleToggle(1);
+    // verify that value changed
+    expect(todoApp.state.todos[0].completed).toBe(true);
   });
 });
