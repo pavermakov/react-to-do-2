@@ -1,0 +1,30 @@
+.todo{
+  align-items: center;
+  cursor:      pointer;
+  display:     flex;
+  padding:     1em;
+  transition:  background .3s ease;
+
+  &:hover{
+    background-color: $very-light-grey;
+  }
+
+  & > :first-child{
+    margin-right: 1rem;
+  }
+
+  &-completed{
+    p, .todo__subtext{
+      color:           $light-color;
+      text-decoration: line-through;
+    }
+  }
+
+  &__subtext{
+    color: $grey-subtext;
+  }
+
+  p, input{
+    margin: 0;
+  }
+}
