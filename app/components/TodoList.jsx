@@ -10,7 +10,13 @@ export var TodoList = React.createClass({
 
     var renderTodos = () => {
 
-      if(todos.length === 0){
+      var notCompletedTodos = TodoAPI.getTodos().filter(todo => {
+        if(!todo.completed){
+          return true;
+        }
+      });
+
+      if((notCompletedTodos.length === 0 && !showCompleted) || (showCompleted && todos.length === 0)){
         return (
           <p className="container__message">Nothing To Do</p>
         );
